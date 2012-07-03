@@ -1,0 +1,10 @@
+Install
+
+setup ruby 1.8.7
+install rubygem packetfu
+
+type "ruby sniff.rb <targets IP Address> <interface>"
+
+sniff.rb		DNS Sniffing and Program entry point
+arpSpoof.rb		Arpspoofing Thread
+
